@@ -8,7 +8,7 @@ from PIL import Image
 def load_dataset():
     rootDir = 'Images'
     bigim = np.zeros((1600, 2100, 3))
-    images = np.zeros((20580, 1600, 2100, 3), dtype=np.int)
+    images = np.zeros((1, 1600, 2100, 3))
     labels = np.empty(20580, dtype=np.str)
     i = 0
     for dirName, subdirList, fileList in os.walk(rootDir):
@@ -20,7 +20,8 @@ def load_dataset():
             if dirName != 'Images':
                 im = plt.imread(dirName + '/' + fname)
                 bigim[0:len(im), 0:np.size(im, 1), :] = im
-                images[i] = bigim
+                bigim2 = np.reshape(bigim, (1, 1600, 2100, 3))
+                images = np.append(images, bigim2, axis=0)
                 labels[i] = label
                 print(i)
                 i += 1
