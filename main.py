@@ -6,7 +6,7 @@ from PIL import Image
 def load_dataset():
     rootDir = 'Images'
     images = np.zeros((20580, 500, 500, 3))
-    labels = np.empty((1), dtype=np.str)
+    labels = np.zeros(20580)
     i = 0
     for dirName, subdirList, fileList in os.walk(rootDir):
         #print('Found directory: %s' % dirName)
@@ -19,6 +19,7 @@ def load_dataset():
             if dirName != 'Images':
                 im = plt.imread(dirName + '/' + fname)
                 images[i] = im
+                labels[i] = label
                 i += 1
 
 def main():
