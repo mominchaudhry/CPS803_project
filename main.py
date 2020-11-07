@@ -25,7 +25,7 @@ def load_dataset():
                 bnd = [s.strip() for s in re.findall(r'<bndbox>(.*)</bndbox>', open("Annotation\\" + dirName.replace('Images\\', '') + "\\" + fname.replace('.jpg', '')).read(), re.DOTALL)][0].replace('<', ' ').replace('>', ' ').split()
                 bndbox = [bnd[1], bnd[4], bnd[7], bnd[10]]
                 im3 = img[int(bndbox[1]):int(bndbox[3]), int(bndbox[0]):int(bndbox[2]), :]
-                print(fname, i)
+                #print(fname, i)
                 im = cv2.resize(im3, dsize=(160, 160), interpolation=cv2.INTER_CUBIC)
                 im = np.reshape(im, (1, 160, 160, 3))
                 images = np.append(images, im, axis=0)
